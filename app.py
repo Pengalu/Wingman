@@ -6,15 +6,30 @@ from dotenv import load_dotenv
 load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
+messagesLog = [
 
-hi = openai.ChatCompletion.create(
+    {"role": "system", "content": "You are a helpful assistant."}
 
-    model="gpt-3.5-turbo",
-  messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Who won the world series in 2022?"},
 
-    ]
-    
-)
-print(hi);
+]
+def apppendToMessages(input):
+     messagesLog.append({"role": "user", "content":input})
+def promptGpt():
+
+    hi = openai.ChatCompletion.create(
+
+        model="gpt-3.5-turbo",
+    messages=messagesLog
+
+        
+        
+    )
+    return (hi);
+#print(hi['choices'][0]['message']['content']);
+def cycle():
+    text = input("insert a prompt: ")
+    apppendToMessages(text);
+    print(promptGpt()['choices'][0]['message']['content'])
+    cycle();
+cycle();
+
