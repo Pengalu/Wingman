@@ -27,9 +27,23 @@ def promptGpt():
     return (hi);
 #print(hi['choices'][0]['message']['content']);
 def cycle():
+    print("type 'reset' to reset the cache. type 'quit' to quit the program.")
     text = input("insert a prompt: ")
-    apppendToMessages(text);
-    print(promptGpt()['choices'][0]['message']['content'])
+    if(text == "reset"):
+        messagesLog = [
+
+         {"role": "system", "content": "You are a helpful assistant."}
+
+
+        ]
+        print("reset succesfully!")
+    else:
+        apppendToMessages(text);
+        print(promptGpt()['choices'][0]['message']['content'])
+    if(text == "quit"):
+        quit()
+    
+    
     cycle();
 cycle();
 
