@@ -23,3 +23,6 @@ toml
 tqdm
 urllib3
 Werkzeug
+wavio
+sounddevice
+scipy
